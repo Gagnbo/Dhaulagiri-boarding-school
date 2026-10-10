@@ -1,0 +1,150 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+  <title>Dhaulagiri Boarding School | Hemja-25, Pokhara</title>
+  <link rel="stylesheet" href="css/style.css">
+  <script>
+    (function(){
+      try {
+        const saved = localStorage.getItem('theme');
+        const theme = saved || (window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light');
+        document.documentElement.dataset.theme = theme;
+      } catch(e){}
+    })();
+  </script>
+</head>
+<body>
+  <header>
+    <div class="wrap bar">
+      <a href="index.html" class="logo">
+        <span class="crest">D</span>
+        <span>
+          <b>Dhaulagiri Boarding School</b>
+          <small>Hemja-25, Pokhara, Nepal</small>
+        </span>
+      </a>
+      <nav id="nav">
+        <a href="index.html" class="on">Home</a>
+        <a href="about.html">About</a>
+        <a href="academics.html">Academics</a>
+        <a href="admissions.html">Admissions</a>
+        <a href="notices.html">Notices &amp; Events</a>
+        <a href="gallery.html">Gallery</a>
+        <a href="contact.html">Contact</a>
+      </nav>
+      <div class="nav-actions">
+        <label class="theme-toggle" aria-label="Theme">
+          <input class="toggle-checkbox" id="theme" type="checkbox" aria-label="Switch to dark mode">
+          <span class="toggle-slot">
+            <span class="sun-icon-wrapper"><span class="iconify sun-icon" data-icon="feather-sun" data-inline="false"></span></span>
+            <span class="toggle-button"></span>
+            <span class="moon-icon-wrapper"><span class="iconify moon-icon" data-icon="feather-moon" data-inline="false"></span></span>
+          </span>
+        </label>
+        <button class="ib" id="menu" aria-label="Open menu">☰</button>
+      </div>
+    </div>
+  </header>
+
+  <main>
+    <!-- HERO SECTION -->
+    <section class="hero">
+      <svg viewBox="0 0 1200 400" preserveAspectRatio="none" aria-hidden="true">
+        <path d="M0 400V260l160-70 120 60 170-150 150 130 120-60 180 110 140-80 160 90v110z" fill="#e9f2ff" opacity=".9"/>
+        <path d="M0 400V300l200-50 160 50 220-90 200 90 180-60 240 70v90z" fill="#2c5da8"/>
+        <path d="M0 400V340l260-40 240 40 260-30 440 40v50z" fill="#1d4a2e"/>
+      </svg>
+      <div class="in">
+        <h1>Learning Today, Leading Tomorrow</h1>
+        <p>Dhaulagiri Boarding School provides a nurturing environment for academic excellence, character building, and lifelong success.</p>
+        <a class="btn" href="academics.html">Explore Our School</a>
+        <a class="btn o" href="admissions.html">Admissions</a>
+      </div>
+    </section>
+
+    <!-- QUICK LINKS STRIP -->
+    <div class="wrap strip">
+      <div class="grid g4">
+        <a class="card ql" href="admissions.html">
+          <div class="ic">🎓</div>
+          <b>Admissions</b><br>
+          <small>Join our family</small>
+        </a>
+        <a class="card ql" href="notices.html">
+          <div class="ic">📅</div>
+          <b>Notices &amp; Events</b><br>
+          <small>Latest updates</small>
+        </a>
+        <a class="card ql" href="gallery.html">
+          <div class="ic">🖼️</div>
+          <b>Gallery</b><br>
+          <small>Our moments</small>
+        </a>
+        <a class="card ql" href="contact.html">
+          <div class="ic">📞</div>
+          <b>Contact</b><br>
+          <small>Get in touch</small>
+        </a>
+      </div>
+    </div>
+
+    <!-- WELCOME / ABOUT PREVIEW SECTION -->
+    <section class="wrap sec">
+      <div class="card split" style="padding: 24px;">
+        <div class="pic">
+          <svg viewBox="0 0 400 240" aria-hidden="true">
+            <circle cx="120" cy="150" r="22" fill="#f1c9a5"/>
+            <rect x="95" y="170" width="50" height="70" rx="12" fill="#1b3f8a"/>
+            <circle cx="210" cy="140" r="22" fill="#e0b48c"/>
+            <rect x="185" y="160" width="50" height="80" rx="12" fill="#2557c9"/>
+            <circle cx="300" cy="150" r="22" fill="#f1c9a5"/>
+            <rect x="275" y="170" width="50" height="70" rx="12" fill="#12306b"/>
+          </svg>
+        </div>
+        <div>
+          <small style="color:var(--blue); font-weight:700;">WELCOME TO</small>
+          <h2 style="font-size:26px; margin:6px 0 12px;">Dhaulagiri Boarding School</h2>
+          <p style="color:var(--mut);">We are committed to providing quality education, modern facilities, and a supportive environment for our students to grow, innovate, and achieve their dreams.</p>
+          <p style="color:var(--mut);">Nestled at the foothills of the Himalayas in Pokhara, we believe in balanced education blending strong academics with character, discipline, and sports.</p>
+          <a class="btn" href="about.html" style="background:var(--navy); border-color:var(--navy); color:#fff; margin-top:8px;">Learn More About Us</a>
+        </div>
+      </div>
+    </section>
+
+    <!-- ACADEMICS HIGHLIGHT -->
+    <section class="wrap sec">
+      <h2>Why Choose Dhaulagiri?</h2>
+      <p class="lead">Dedicated to academic rigor and holistic development of each child.</p>
+      <div class="grid g3">
+        <div class="card">
+          <div class="ic">🏆</div>
+          <h3 style="font-size:17px; margin-bottom:8px;">Academic Excellence</h3>
+          <p style="color:var(--mut); font-size:13px;">Consistently outstanding academic performance guided by experienced and passionate educators.</p>
+        </div>
+        <div class="card">
+          <div class="ic">🌱</div>
+          <h3 style="font-size:17px; margin-bottom:8px;">Holistic Development</h3>
+          <p style="color:var(--mut); font-size:13px;">Extensive extracurricular activities including athletics, arts, debate, science fairs, and community service.</p>
+        </div>
+        <div class="card">
+          <div class="ic">🛡️</div>
+          <h3 style="font-size:17px; margin-bottom:8px;">Safe & Caring Campus</h3>
+          <p style="color:var(--mut); font-size:13px;">A modern, safe, inclusive, and technology-friendly learning environment fostering lifelong friendships.</p>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer>
+    <div class="wrap">
+      <span>Discipline | Knowledge | Excellence</span>
+      <span>© 2026 Dhaulagiri Boarding School · Hemja-25, Pokhara, Nepal</span>
+    </div>
+  </footer>
+
+  <script src="https://code.iconify.design/2/2.2.1/iconify.min.js"></script>
+  <script src="js/main.js"></script>
+</body>
+</html>

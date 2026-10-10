@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+  <title>Gallery | Dhaulagiri Boarding School</title>
+  <link rel="stylesheet" href="css/style.css">
+  <script>
+    (function(){
+      try {
+        const saved = localStorage.getItem('theme');
+        const theme = saved || (window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light');
+        document.documentElement.dataset.theme = theme;
+      } catch(e){}
+    })();
+  </script>
+</head>
+<body>
+  <header>
+    <div class="wrap bar">
+      <a href="index.html" class="logo">
+        <span class="crest">D</span>
+        <span>
+          <b>Dhaulagiri Boarding School</b>
+          <small>Hemja-25, Pokhara, Nepal</small>
+        </span>
+      </a>
+      <nav id="nav">
+        <a href="index.html">Home</a>
+        <a href="about.html">About</a>
+        <a href="academics.html">Academics</a>
+        <a href="admissions.html">Admissions</a>
+        <a href="notices.html">Notices &amp; Events</a>
+        <a href="gallery.html" class="on">Gallery</a>
+        <a href="contact.html">Contact</a>
+      </nav>
+      <div class="nav-actions">
+        <label class="theme-toggle" aria-label="Theme">
+          <input class="toggle-checkbox" id="theme" type="checkbox" aria-label="Switch to dark mode">
+          <span class="toggle-slot">
+            <span class="sun-icon-wrapper"><span class="iconify sun-icon" data-icon="feather-sun" data-inline="false"></span></span>
+            <span class="toggle-button"></span>
+            <span class="moon-icon-wrapper"><span class="iconify moon-icon" data-icon="feather-moon" data-inline="false"></span></span>
+          </span>
+        </label>
+        <button class="ib" id="menu" aria-label="Open menu">☰</button>
+      </div>
+    </div>
+  </header>
+
+  <main>
+    <div class="sub">
+      <div class="wrap">
+        <h1>Photo Gallery</h1>
+        <div class="crumb"><a href="index.html">Home</a> › Gallery</div>
+      </div>
+    </div>
+
+    <section class="wrap sec">
+      <div class="gallery-toolbar">
+        <div class="gallery-heading">
+          <h2>Campus Moments &amp; Activities</h2>
+          <p class="lead">Capturing inspiring moments, extracurricular activities, and achievements.</p>
+        </div>
+        <div class="pills gallery-filters" id="pills">
+          <div class="gallery-filter-group">
+            <button class="on" data-f="all">All Photos</button>
+            <button data-f="Classroom">Classroom</button>
+            <button data-f="Sports">Sports</button>
+            <button data-f="Events">Events &amp; Culture</button>
+            <button data-f="Campus">Campus</button>
+          </div>
+          <div class="gallery-filter-group gallery-batch-filters">
+            <button data-f="Classroom">Class 10 Batch</button>
+            <button data-f="Classroom">Class 12 Batch</button>
+          </div>
+        </div>
+      </div>
+
+      <!-- GALLERY TILES -->
+      <div class="grid g3" id="gal"></div>
+    </section>
+  </main>
+
+  <footer>
+    <div class="wrap">
+      <span>Discipline | Knowledge | Excellence</span>
+      <span>© 2026 Dhaulagiri Boarding School · Hemja-25, Pokhara, Nepal</span>
+    </div>
+  </footer>
+
+  <script src="js/main.js"></script>
+  <script src="https://code.iconify.design/2/2.2.1/iconify.min.js"></script>
+  <script src="js/gallery.js"></script>
+</body>
+</html>
+

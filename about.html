@@ -1,0 +1,154 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+  <title>About Us | Dhaulagiri Boarding School</title>
+  <link rel="stylesheet" href="css/style.css">
+  <script>
+    (function(){
+      try {
+        const saved = localStorage.getItem('theme');
+        const theme = saved || (window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light');
+        document.documentElement.dataset.theme = theme;
+      } catch(e){}
+    })();
+  </script>
+</head>
+<body>
+  <header>
+    <div class="wrap bar">
+      <a href="index.html" class="logo">
+        <span class="crest">D</span>
+        <span>
+          <b>Dhaulagiri Boarding School</b>
+          <small>Hemja-25, Pokhara, Nepal</small>
+        </span>
+      </a>
+      <nav id="nav">
+        <a href="index.html">Home</a>
+        <a href="about.html" class="on">About</a>
+        <a href="academics.html">Academics</a>
+        <a href="admissions.html">Admissions</a>
+        <a href="notices.html">Notices &amp; Events</a>
+        <a href="gallery.html">Gallery</a>
+        <a href="contact.html">Contact</a>
+      </nav>
+      <div class="nav-actions">
+        <label class="theme-toggle" aria-label="Theme">
+          <input class="toggle-checkbox" id="theme" type="checkbox" aria-label="Switch to dark mode">
+          <span class="toggle-slot">
+            <span class="sun-icon-wrapper"><span class="iconify sun-icon" data-icon="feather-sun" data-inline="false"></span></span>
+            <span class="toggle-button"></span>
+            <span class="moon-icon-wrapper"><span class="iconify moon-icon" data-icon="feather-moon" data-inline="false"></span></span>
+          </span>
+        </label>
+        <button class="ib" id="menu" aria-label="Open menu">☰</button>
+      </div>
+    </div>
+  </header>
+
+  <main>
+    <div class="sub">
+      <div class="wrap">
+        <h1>About Our School</h1>
+        <div class="crumb"><a href="index.html">Home</a> › About Us</div>
+      </div>
+    </div>
+
+    <!-- OUR STORY -->
+    <section class="wrap sec">
+      <div class="split">
+        <div>
+          <small style="color:var(--blue); font-weight:700;">OUR STORY</small>
+          <h2 style="font-size:26px; margin: 6px 0 14px;">A Tradition of Quality Education</h2>
+          <p style="color:var(--mut);">Dhaulagiri Boarding School, located in Hemja-25, Pokhara, Nepal, is dedicated to providing quality education and nurturing well-rounded individuals. We believe in building strong foundations for a brighter future through academic excellence, positive values, and an inspiring learning community.</p>
+          <p style="color:var(--mut);">Established with a vision to serve our community, our school pairs contemporary pedagogical approaches with traditional ethics, encouraging students to develop intellectual curiosity, empathy, and leadership capabilities.</p>
+        </div>
+        <div class="pic">
+          <svg viewBox="0 0 400 240" aria-hidden="true">
+            <path d="M0 240V140l100-50 80 40 100-90 120 100v100z" fill="#e9f2ff" opacity=".85"/>
+            <path d="M0 240V160l120-40 100 40 180-60v100z" fill="#2c5da8"/>
+            <circle cx="200" cy="110" r="18" fill="#f1c9a5"/>
+            <rect x="180" y="128" width="40" height="60" rx="10" fill="#12306b"/>
+          </svg>
+        </div>
+      </div>
+    </section>
+
+    <!-- MISSION & VISION -->
+    <section class="wrap">
+      <div class="grid g2">
+        <div class="card">
+          <h3 style="font-size:18px; margin-bottom:8px;">🎯 Our Mission</h3>
+          <p style="color:var(--mut);">To provide an accessible and high-standard education that develops knowledge, moral character, critical thinking, and leadership in every student.</p>
+        </div>
+        <div class="card">
+          <h3 style="font-size:18px; margin-bottom:8px;">👁️ Our Vision</h3>
+          <p style="color:var(--mut);">To be a center of educational excellence, empowering youth to succeed globally while remaining grounded in their culture and contributing positively to society.</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- OUR VALUES -->
+    <section class="wrap sec">
+      <h2>Our Core Values</h2>
+      <p class="lead">The fundamental principles guiding our everyday school life and teaching philosophy.</p>
+      <div class="grid g5">
+        <div class="card ql">
+          <div class="ic">📘</div>
+          <b>Discipline</b>
+          <small style="display:block; margin-top:4px;">Consistency &amp; focus</small>
+        </div>
+        <div class="card ql">
+          <div class="ic">🤝</div>
+          <b>Respect</b>
+          <small style="display:block; margin-top:4px;">Empathy for all</small>
+        </div>
+        <div class="card ql">
+          <div class="ic">💪</div>
+          <b>Hard Work</b>
+          <small style="display:block; margin-top:4px;">Diligence &amp; grit</small>
+        </div>
+        <div class="card ql">
+          <div class="ic">🛡️</div>
+          <b>Integrity</b>
+          <small style="display:block; margin-top:4px;">Honesty &amp; ethics</small>
+        </div>
+        <div class="card ql">
+          <div class="ic">⭐</div>
+          <b>Excellence</b>
+          <small style="display:block; margin-top:4px;">Aiming highest</small>
+        </div>
+      </div>
+    </section>
+
+    <!-- LEADERSHIP -->
+    <section class="wrap sec" style="padding-top:0;">
+      <h2>School Leadership &amp; Administration</h2>
+      <p class="lead">Passionate professionals committed to driving institutional growth.</p>
+      <div class="grid g2">
+        <div class="card">
+          <b>School Principal</b><br>
+          <small>Leading academic vision, faculty development, and educational mentorship.</small>
+        </div>
+        <div class="card">
+          <b>School Management Committee</b><br>
+          <small>Guiding institutional policies, community partnerships, and infrastructure development.</small>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer>
+    <div class="wrap">
+      <span>Discipline | Knowledge | Excellence</span>
+      <span>© 2026 Dhaulagiri Boarding School · Hemja-25, Pokhara, Nepal</span>
+    </div>
+  </footer>
+
+  <script src="https://code.iconify.design/2/2.2.1/iconify.min.js"></script>
+  <script src="js/main.js"></script>
+</body>
+</html>
+
