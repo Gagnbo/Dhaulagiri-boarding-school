@@ -400,6 +400,9 @@ nav a.on {
 }
 
 .small-btn {
+  display: inline-block;
+  text-align: center;
+  text-decoration: none;
   border: 1px solid var(--blue);
   color: var(--blue);
   background: transparent;
