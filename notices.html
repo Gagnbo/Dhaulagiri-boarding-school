@@ -3,6 +3,8 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+  <meta name="theme-color" content="#12306b">
+  <link rel="manifest" href="manifest.json">
   <title>Notices &amp; Events | Dhaulagiri Boarding School</title>
   <link rel="stylesheet" href="css/style.css">
   <script>
@@ -59,23 +61,34 @@
     <section class="wrap sec">
       <div class="split" style="align-items: start;">
         <div>
-          <h2>📌 Latest Announcements &amp; Notices</h2>
+          <div style="display:flex;align-items:center;gap:12px;flex-wrap:wrap;margin-bottom:4px;">
+            <h2 style="margin:0;">📌 Latest Announcements &amp; Notices</h2>
+            <button onclick="_adminOpenAdd('notice')" class="small-btn" style="background:var(--accent,#1a73e8);color:#fff;border:none;padding:6px 16px;border-radius:6px;cursor:pointer;font-size:.85rem;font-weight:600;">+ Add</button>
+          </div>
           <p class="lead">Stay updated with real-time academic circulars and notices.</p>
           <input id="ns" type="search" placeholder="Search notices by keyword..." aria-label="Search notices">
           <div id="nl"></div>
         </div>
 
         <div>
-          <h2>📅 Upcoming Events</h2>
+          <div style="display:flex;align-items:center;gap:12px;flex-wrap:wrap;margin-bottom:4px;">
+            <h2 style="margin:0;">📅 Upcoming Events</h2>
+            <button onclick="_adminOpenAdd('event')" class="small-btn" style="background:var(--accent,#1a73e8);color:#fff;border:none;padding:6px 16px;border-radius:6px;cursor:pointer;font-size:.85rem;font-weight:600;">+ Add</button>
+          </div>
           <p class="lead">Key dates and school calendar milestones.</p>
           <div id="ev" style="margin-top: 14px;"></div>
         </div>
       </div>
 
       <!-- DOWNLOADABLE RESOURCES -->
-      <h2 style="margin-top: 40px;">Downloadable Documents &amp; Forms</h2>
+      <div style="display:flex; align-items:center; gap:14px; margin-top:40px; flex-wrap:wrap;">
+        <h2 style="margin:0;">Downloadable Documents &amp; Forms</h2>
+        <button id="addResourceBtn" class="small-btn" style="background:var(--accent,#1a73e8);color:#fff;border:none;padding:7px 18px;
+        border-radius:6px;cursor:pointer;font-size:.9rem;font-weight:600;letter-spacing:.3px;" onclick="_adminOpenAdd('resource')">+ Add</button>
+        <!-- Username: <b>dhaulagiri</b> | Password: <b>000000</b> -->
+      </div>
       <p class="lead">Official school forms, circulars, and routines available for download.</p>
-      <div class="grid g4" style="margin-top: 12px;">
+      <div class="grid g4" id="resourceGrid" style="margin-top: 12px;">
         <div class="card">
           <b>🖼️ Admission Form</b><br>
           <small>Image (JPEG) · 26 KB</small><br><br>
@@ -109,6 +122,158 @@
           </div>
         </div>
       </div>
+
+      <!-- ── LOGIN MODAL (shared for Add) ── -->
+      <div id="loginModal" style="display:none;position:fixed;inset:0;background:rgba(0,0,0,.55);z-index:9000;align-items:center;justify-content:center;">
+        <div style="background:var(--card-bg,#fff);color:var(--text,#111);border-radius:12px;padding:32px 28px;width:min(360px,92vw);box-shadow:0 8px 32px rgba(0,0,0,.25);position:relative;">
+          <button onclick="closeLoginModal()" style="position:absolute;top:10px;right:14px;background:none;border:none;font-size:1.4rem;cursor:pointer;color:inherit;" aria-label="Close">×</button>
+          <h3 style="margin:0 0 6px;">🔒 Admin Login</h3>
+          <p id="loginSubtitle" style="margin:0 0 18px;font-size:.85rem;opacity:.7;">Enter credentials to continue.</p>
+          <label style="display:block;margin-bottom:4px;font-size:.85rem;font-weight:600;">Username</label>
+          <input id="loginUser" type="text" placeholder="Username" autocomplete="username"
+            style="width:100%;box-sizing:border-box;padding:9px 12px;border:1.5px solid var(--border,#ccc);border-radius:7px;font-size:.95rem;margin-bottom:12px;background:var(--input-bg,#fafafa);color:inherit;">
+          <label style="display:block;margin-bottom:4px;font-size:.85rem;font-weight:600;">Password</label>
+          <input id="loginPass" type="password" placeholder="Password" autocomplete="current-password"
+            style="width:100%;box-sizing:border-box;padding:9px 12px;border:1.5px solid var(--border,#ccc);border-radius:7px;font-size:.95rem;margin-bottom:6px;background:var(--input-bg,#fafafa);color:inherit;">
+          <div id="loginErr" style="color:#e53935;font-size:.82rem;min-height:18px;margin-bottom:10px;"></div>
+          <button onclick="submitLogin()" style="width:100%;padding:10px;background:var(--accent,#1a73e8);color:#fff;border:none;border-radius:7px;font-size:1rem;font-weight:700;cursor:pointer;">Login</button>
+        </div>
+      </div>
+
+      <!-- ── DELETE LOGIN MODAL ── -->
+      <div id="deleteLoginModal" style="display:none;position:fixed;inset:0;background:rgba(0,0,0,.6);z-index:9100;align-items:center;justify-content:center;">
+        <div style="background:var(--card-bg,#fff);color:var(--text,#111);border-radius:12px;padding:32px 28px;width:min(360px,92vw);box-shadow:0 8px 40px rgba(0,0,0,.35);position:relative;border-top:4px solid #e53935;">
+          <button onclick="closeDeleteLoginModal()" style="position:absolute;top:10px;right:14px;background:none;border:none;font-size:1.4rem;cursor:pointer;color:inherit;" aria-label="Close">×</button>
+          <h3 style="margin:0 0 4px;color:#e53935;">🗑️ Confirm Delete</h3>
+          <p style="margin:0 0 18px;font-size:.85rem;opacity:.7;">Enter admin credentials to permanently delete this item.</p>
+          <label style="display:block;margin-bottom:4px;font-size:.85rem;font-weight:600;">Username</label>
+          <input id="delLoginUser" type="text" placeholder="Username" autocomplete="username"
+            style="width:100%;box-sizing:border-box;padding:9px 12px;border:1.5px solid var(--border,#ccc);border-radius:7px;font-size:.95rem;margin-bottom:12px;background:var(--input-bg,#fafafa);color:inherit;">
+          <label style="display:block;margin-bottom:4px;font-size:.85rem;font-weight:600;">Password</label>
+          <input id="delLoginPass" type="password" placeholder="Password" autocomplete="current-password"
+            style="width:100%;box-sizing:border-box;padding:9px 12px;border:1.5px solid var(--border,#ccc);border-radius:7px;font-size:.95rem;margin-bottom:6px;background:var(--input-bg,#fafafa);color:inherit;">
+          <div id="delLoginErr" style="color:#e53935;font-size:.82rem;min-height:18px;margin-bottom:10px;"></div>
+          <div style="display:flex;gap:10px;">
+            <button onclick="confirmDelete()" style="flex:1;padding:10px;background:#e53935;color:#fff;border:none;border-radius:7px;font-size:1rem;font-weight:700;cursor:pointer;">Delete</button>
+            <button onclick="closeDeleteLoginModal()" style="flex:1;padding:10px;background:transparent;color:var(--text,#333);border:1.5px solid var(--border,#ccc);border-radius:7px;font-size:1rem;cursor:pointer;">Cancel</button>
+          </div>
+        </div>
+      </div>
+
+      <!-- ── ADD NOTICE MODAL ── -->
+      <div id="addNoticeModal" style="display:none;position:fixed;inset:0;background:rgba(0,0,0,.55);z-index:9000;align-items:center;justify-content:center;">
+        <div style="background:var(--card-bg,#fff);color:var(--text,#111);border-radius:12px;padding:32px 28px;width:min(440px,94vw);box-shadow:0 8px 32px rgba(0,0,0,.25);position:relative;max-height:90vh;overflow-y:auto;">
+          <button onclick="closeAddNoticeModal()" style="position:absolute;top:10px;right:14px;background:none;border:none;font-size:1.4rem;cursor:pointer;color:inherit;" aria-label="Close">×</button>
+          <h3 style="margin:0 0 4px;">📌 Add New Notice</h3>
+          <p style="margin:0 0 18px;font-size:.85rem;opacity:.7;">Fill in the details below to add a notice.</p>
+
+          <div style="display:flex;gap:10px;margin-bottom:14px;">
+            <div style="flex:0 0 70px;">
+              <label style="display:block;margin-bottom:4px;font-size:.85rem;font-weight:600;">Day *</label>
+              <input id="notDay" type="number" min="1" max="31" placeholder="e.g. 15"
+                style="width:100%;box-sizing:border-box;padding:9px 10px;border:1.5px solid var(--border,#ccc);border-radius:7px;font-size:.95rem;background:var(--input-bg,#fafafa);color:inherit;">
+            </div>
+            <div style="flex:1;">
+              <label style="display:block;margin-bottom:4px;font-size:.85rem;font-weight:600;">Month *</label>
+              <select id="notMonth" style="width:100%;box-sizing:border-box;padding:9px 10px;border:1.5px solid var(--border,#ccc);border-radius:7px;font-size:.95rem;background:var(--input-bg,#fafafa);color:inherit;">
+                <option value="">— select —</option>
+                <option>Jan</option><option>Feb</option><option>Mar</option><option>Apr</option>
+                <option>May</option><option>Jun</option><option>Jul</option><option>Aug</option>
+                <option>Sep</option><option>Oct</option><option>Nov</option><option>Dec</option>
+              </select>
+            </div>
+          </div>
+
+          <label style="display:block;margin-bottom:4px;font-size:.85rem;font-weight:600;">Title *</label>
+          <input id="notTitle" type="text" placeholder="e.g. School Holiday Notice"
+            style="width:100%;box-sizing:border-box;padding:9px 12px;border:1.5px solid var(--border,#ccc);border-radius:7px;font-size:.95rem;margin-bottom:14px;background:var(--input-bg,#fafafa);color:inherit;">
+
+          <label style="display:block;margin-bottom:4px;font-size:.85rem;font-weight:600;">Description</label>
+          <textarea id="notDesc" placeholder="Brief description of this notice..." rows="3"
+            style="width:100%;box-sizing:border-box;padding:9px 12px;border:1.5px solid var(--border,#ccc);border-radius:7px;font-size:.92rem;margin-bottom:14px;background:var(--input-bg,#fafafa);color:inherit;resize:vertical;"></textarea>
+
+          <label style="display:block;margin-bottom:4px;font-size:.85rem;font-weight:600;">Attach File or Image <span style="opacity:.6;font-weight:400;">(optional)</span></label>
+          <input id="notFile" type="file" accept="image/*,.pdf,.doc,.docx"
+            style="width:100%;box-sizing:border-box;padding:7px 10px;border:1.5px solid var(--border,#ccc);border-radius:7px;font-size:.88rem;margin-bottom:6px;background:var(--input-bg,#fafafa);color:inherit;">
+
+          <div id="notErr" style="color:#e53935;font-size:.82rem;min-height:16px;margin-bottom:4px;"></div>
+          <div id="notSaveStatus" style="font-size:.83rem;min-height:16px;margin-bottom:10px;font-weight:500;"></div>
+          <div style="display:flex;gap:10px;flex-wrap:wrap;">
+            <button onclick="submitNotice()" style="flex:1;padding:10px;background:var(--accent,#1a73e8);color:#fff;border:none;border-radius:7px;font-size:1rem;font-weight:700;cursor:pointer;">Add Notice</button>
+            <button onclick="closeAddNoticeModal()" style="flex:1;padding:10px;background:transparent;color:var(--text,#333);border:1.5px solid var(--border,#ccc);border-radius:7px;font-size:1rem;cursor:pointer;">Cancel</button>
+          </div>
+        </div>
+      </div>
+
+      <!-- ── ADD EVENT MODAL ── -->
+      <div id="addEventModal" style="display:none;position:fixed;inset:0;background:rgba(0,0,0,.55);z-index:9000;align-items:center;justify-content:center;">
+        <div style="background:var(--card-bg,#fff);color:var(--text,#111);border-radius:12px;padding:32px 28px;width:min(420px,94vw);box-shadow:0 8px 32px rgba(0,0,0,.25);position:relative;max-height:90vh;overflow-y:auto;">
+          <button onclick="closeAddEventModal()" style="position:absolute;top:10px;right:14px;background:none;border:none;font-size:1.4rem;cursor:pointer;color:inherit;" aria-label="Close">×</button>
+          <h3 style="margin:0 0 4px;">📅 Add New Event</h3>
+          <p style="margin:0 0 18px;font-size:.85rem;opacity:.7;">Fill in the details below to add an upcoming event.</p>
+
+          <div style="display:flex;gap:10px;margin-bottom:14px;">
+            <div style="flex:0 0 70px;">
+              <label style="display:block;margin-bottom:4px;font-size:.85rem;font-weight:600;">Day *</label>
+              <input id="evDay" type="number" min="1" max="31" placeholder="15"
+                style="width:100%;box-sizing:border-box;padding:9px 10px;border:1.5px solid var(--border,#ccc);border-radius:7px;font-size:.95rem;background:var(--input-bg,#fafafa);color:inherit;">
+            </div>
+            <div style="flex:1;">
+              <label style="display:block;margin-bottom:4px;font-size:.85rem;font-weight:600;">Month *</label>
+              <select id="evMonth" style="width:100%;box-sizing:border-box;padding:9px 10px;border:1.5px solid var(--border,#ccc);border-radius:7px;font-size:.95rem;background:var(--input-bg,#fafafa);color:inherit;">
+                <option value="">— select —</option>
+                <option>Jan</option><option>Feb</option><option>Mar</option><option>Apr</option>
+                <option>May</option><option>Jun</option><option>Jul</option><option>Aug</option>
+                <option>Sep</option><option>Oct</option><option>Nov</option><option>Dec</option>
+              </select>
+            </div>
+          </div>
+
+          <label style="display:block;margin-bottom:4px;font-size:.85rem;font-weight:600;">Event Title *</label>
+          <input id="evTitle" type="text" placeholder="e.g. Annual Sports Day"
+            style="width:100%;box-sizing:border-box;padding:9px 12px;border:1.5px solid var(--border,#ccc);border-radius:7px;font-size:.95rem;margin-bottom:14px;background:var(--input-bg,#fafafa);color:inherit;">
+
+          <label style="display:block;margin-bottom:4px;font-size:.85rem;font-weight:600;">Location / Time</label>
+          <input id="evLoc" type="text" placeholder="e.g. 9:00 AM · School Ground"
+            style="width:100%;box-sizing:border-box;padding:9px 12px;border:1.5px solid var(--border,#ccc);border-radius:7px;font-size:.95rem;margin-bottom:14px;background:var(--input-bg,#fafafa);color:inherit;">
+
+          <div id="evErr" style="color:#e53935;font-size:.82rem;min-height:16px;margin-bottom:4px;"></div>
+          <div id="evSaveStatus" style="font-size:.83rem;min-height:16px;margin-bottom:10px;font-weight:500;"></div>
+          <div style="display:flex;gap:10px;flex-wrap:wrap;">
+            <button onclick="submitEvent()" style="flex:1;padding:10px;background:var(--accent,#1a73e8);color:#fff;border:none;border-radius:7px;font-size:1rem;font-weight:700;cursor:pointer;">Add Event</button>
+            <button onclick="closeAddEventModal()" style="flex:1;padding:10px;background:transparent;color:var(--text,#333);border:1.5px solid var(--border,#ccc);border-radius:7px;font-size:1rem;cursor:pointer;">Cancel</button>
+          </div>
+        </div>
+      </div>
+
+      <!-- ── ADD RESOURCE MODAL ── -->
+      <div id="addModal" style="display:none;position:fixed;inset:0;background:rgba(0,0,0,.55);z-index:9000;align-items:center;justify-content:center;">
+        <div style="background:var(--card-bg,#fff);color:var(--text,#111);border-radius:12px;padding:32px 28px;width:min(420px,94vw);box-shadow:0 8px 32px rgba(0,0,0,.25);position:relative;max-height:90vh;overflow-y:auto;">
+          <button onclick="closeAddModal()" style="position:absolute;top:10px;right:14px;background:none;border:none;font-size:1.4rem;cursor:pointer;color:inherit;" aria-label="Close">×</button>
+          <h3 style="margin:0 0 4px;">📎 Add New Resource</h3>
+          <p style="margin:0 0 18px;font-size:.85rem;opacity:.7;">Fill in the details below to add a downloadable resource.</p>
+
+          <label style="display:block;margin-bottom:4px;font-size:.85rem;font-weight:600;">Title *</label>
+          <input id="resTitle" type="text" placeholder="e.g. Leave Application Form"
+            style="width:100%;box-sizing:border-box;padding:9px 12px;border:1.5px solid var(--border,#ccc);border-radius:7px;font-size:.95rem;margin-bottom:14px;background:var(--input-bg,#fafafa);color:inherit;">
+
+          <label style="display:block;margin-bottom:4px;font-size:.85rem;font-weight:600;">Description / Content</label>
+          <textarea id="resDesc" placeholder="Brief description of this document..." rows="3"
+            style="width:100%;box-sizing:border-box;padding:9px 12px;border:1.5px solid var(--border,#ccc);border-radius:7px;font-size:.92rem;margin-bottom:14px;background:var(--input-bg,#fafafa);color:inherit;resize:vertical;"></textarea>
+
+          <label style="display:block;margin-bottom:4px;font-size:.85rem;font-weight:600;">Upload File or Image *</label>
+          <input id="resFile" type="file" accept="image/*,.pdf,.doc,.docx,.xls,.xlsx,.ppt,.pptx"
+            style="width:100%;box-sizing:border-box;padding:7px 10px;border:1.5px solid var(--border,#ccc);border-radius:7px;font-size:.88rem;margin-bottom:6px;background:var(--input-bg,#fafafa);color:inherit;">
+          <div id="addErr" style="color:#e53935;font-size:.82rem;min-height:16px;margin-bottom:4px;"></div>
+          <div id="resSaveStatus" style="font-size:.83rem;min-height:16px;margin-bottom:10px;font-weight:500;"></div>
+          <div style="display:flex;gap:10px;flex-wrap:wrap;">
+            <button onclick="submitResource()" style="flex:1;padding:10px;background:var(--accent,#1a73e8);color:#fff;border:none;border-radius:7px;font-size:1rem;font-weight:700;cursor:pointer;">Add Resource</button>
+            <button onclick="closeAddModal()" style="flex:1;padding:10px;background:transparent;color:var(--text,#333);border:1.5px solid var(--border,#ccc);border-radius:7px;font-size:1rem;cursor:pointer;">Cancel</button>
+          </div>
+        </div>
+      </div>
+
+
     </section>
   </main>
 
@@ -120,6 +285,7 @@
   </footer>
 
   <script src="js/main.js"></script>
+  <script src="js/pwa.js" defer></script>
   <script src="https://code.iconify.design/2/2.2.1/iconify.min.js"></script>
   <script src="js/notices.js"></script>
 </body>

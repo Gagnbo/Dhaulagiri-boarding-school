@@ -286,6 +286,15 @@ nav a.on {
   display: none;
 }
 
+.pwa-action {
+  min-height: 36px;
+  white-space: nowrap;
+}
+
+.pwa-action[hidden] {
+  display: none;
+}
+
 :focus-visible {
   outline: 3px solid var(--gold);
   outline-offset: 2px;
@@ -903,6 +912,42 @@ footer .wrap {
   footer .wrap {
     flex-direction: column;
     text-align: center;
+  }
+
+  .wrap {
+    padding-right: 14px;
+    padding-left: 14px;
+  }
+
+  .row {
+    align-items: flex-start;
+    flex-wrap: wrap;
+  }
+
+  .row > div:nth-child(2) {
+    min-width: 0;
+  }
+
+  .row > div:nth-child(3) {
+    width: 100%;
+    padding-left: 68px;
+  }
+
+  .bar {
+    gap: 8px;
+  }
+
+  .logo b {
+    font-size: 12px;
+  }
+
+  .nav-actions {
+    gap: 5px;
+  }
+
+  .pwa-action {
+    padding: 6px 8px;
+    font-size: 11px;
   }
 }
 

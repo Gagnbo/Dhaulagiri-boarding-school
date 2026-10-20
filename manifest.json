@@ -1,0 +1,15 @@
+{
+  "id": "./index.html",
+  "name": "Dhaulagiri Boarding School",
+  "short_name": "Dhaulagiri School",
+  "description": "School information, notices, and events for Dhaulagiri Boarding School.",
+  "start_url": "./index.html",
+  "scope": "./",
+  "display": "standalone",
+  "orientation": "any",
+  "background_color": "#f4f7fc",
+  "theme_color": "#12306b",
+  "icons": [
+    { "src": "src/app-icon.svg", "sizes": "any", "type": "image/svg+xml", "purpose": "any maskable" }
+  ]
+}
