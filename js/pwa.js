@@ -20,21 +20,36 @@
     installButton.className = 'small-btn pwa-action';
     installButton.id = 'installApp';
     installButton.textContent = 'Install App';
-    installButton.hidden = true;
+    installButton.hidden = (window.matchMedia &&
+      window.matchMedia('(display-mode: standalone)').matches) ||
+      navigator.standalone === true;
     actions.prepend(installButton);
 
     installButton.addEventListener('click', async () => {
-      if (!installPrompt) return;
-      installPrompt.prompt();
-      await installPrompt.userChoice;
+      if (!installPrompt) {
+        const isIOS = /iphone|ipad|ipod/i.test(navigator.userAgent) ||
+          (navigator.platform === 'MacIntel' && navigator.maxTouchPoints > 1);
+        window.alert(isIOS
+          ? 'To install this app, open this page in Safari, tap Share, then choose “Add to Home Screen”.'
+          : 'To install this app, open your browser menu and choose “Install app” or “Add to Home Screen”.');
+        return;
+      }
+
+      const prompt = installPrompt;
       installPrompt = null;
-      installButton.hidden = true;
+      try {
+        await prompt.prompt();
+        const choice = await prompt.userChoice;
+        if (choice.outcome === 'accepted') installButton.hidden = true;
+      } catch (error) {
+        console.error('App installation prompt failed:', error);
+        window.alert('The browser could not start installation. Try installing from its menu.');
+      }
     });
 
     window.addEventListener('beforeinstallprompt', event => {
       event.preventDefault();
       installPrompt = event;
-      installButton.hidden = false;
     });
     window.addEventListener('appinstalled', () => {
       installPrompt = null;

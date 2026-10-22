@@ -4,7 +4,7 @@
 
 - `manifest.json` describes the installable app and uses `src/app-icon.svg`.
 - `sw.js` caches the app shell for offline page and asset access and imports OneSignal's service worker support.
-- `js/pwa.js` registers `sw.js`, shows the browser's **Install App** prompt when supported, and contains the opt-in hook for OneSignal.
+- `js/pwa.js` registers `sw.js`, provides an **Install App** button with the browser's install prompt when supported and manual install directions otherwise, and contains the opt-in hook for OneSignal.
 - Every main page (`index.html`, `about.html`, `academics.html`, `admissions.html`, `notices.html`, `gallery.html`, `contact.html`) links the manifest, sets the theme color, and loads `js/pwa.js`. The viewport tags were already correct.
 - `css/style.css` already had tablet/mobile navigation and grid breakpoints; it now wraps notice rows and tightens phone header spacing.
 
@@ -12,7 +12,7 @@
 
 1. Deploy the site over HTTPS. Service workers and web push require HTTPS; `http://localhost` is suitable for local development, but opening the HTML directly with `file://` is not.
 2. Keep `manifest.json`, `sw.js`, and the HTML files at the same site root as they are here. Confirm `https://your-domain/sw.js` and `https://your-domain/manifest.json` are served as files, not rewritten to an HTML page.
-3. Open the site in a supported browser. The **Install App** button appears only after the browser fires `beforeinstallprompt`; some browsers instead provide their own browser menu option. On iPhone/iPad, use Safari's **Share → Add to Home Screen**.
+3. Open the site in a supported browser. The **Install App** button is visible in the header on each page. Where supported, it opens the browser's native install prompt; in other browsers it explains how to install from the browser menu. On iPhone/iPad, open the site in Safari and use **Share → Add to Home Screen**. Browser support and install eligibility vary, so installation cannot be forced on every device.
 4. On a later release with changed cached assets, increment `CACHE_NAME` in `sw.js` so existing installations replace the old cache.
 
 The service worker caches the main HTML pages, CSS, JavaScript, and supplied school assets. Content kept only in `localStorage` remains available only in that same browser/device and is not synchronized offline or online to other visitors.
