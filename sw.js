@@ -1,12 +1,17 @@
 /* Offline app shell. Keep this file at the site root so it can control every page. */
-importScripts('https://cdn.onesignal.com/sdks/web/v16/OneSignalSDK.sw.js');
+try {
+  importScripts('https://cdn.onesignal.com/sdks/web/v16/OneSignalSDK.sw.js');
+} catch (e) {
+  // OneSignal optional
+}
 
-const CACHE_NAME = 'dhaulagiri-school-v1';
+const CACHE_NAME = 'dhaulagiri-school-v2';
 const APP_SHELL = [
   './', './index.html', './about.html', './academics.html', './admissions.html',
   './notices.html', './gallery.html', './contact.html', './manifest.json',
-  './css/style.css', './js/main.js', './js/notices.js', './js/gallery.js',
-  './src/app-icon.svg', './src/school-calendar-2026.jpg',
+  './css/style.css', './js/main.js', './js/notices.js', './js/gallery.js', './js/pwa.js',
+  './src/app-icon.svg', './src/icon-192.png', './src/icon-512.png',
+  './src/school-calendar-2026.jpg',
   './src/Hope special school.jpeg', './src/School_Website_Sales_Guide.pdf'
 ];
 
